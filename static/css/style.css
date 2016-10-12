@@ -1,0 +1,40 @@
+#twitter-login {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.friend {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+
+    -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.55);
+    -moz-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.55);
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.55);
+}
+
+.actions {
+    text-align: right;
+}
+
+.action {
+    padding: 4px;
+    margin: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.un-follow {
+    background: #4a9bff;
+    color: #FFF;
+
+    -webkit-box-shadow: 0 0 2px 1px rgba(42, 176, 255, 0.55);
+    -moz-box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);
+    box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);
+}
+
+.un-follow:hover {
+    background: #8db4ff;
+    color: #FFF;
+}
