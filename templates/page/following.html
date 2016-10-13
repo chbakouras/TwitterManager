@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block content %}
     <div class="container">
         <div class="row">
             {% for friend in friends %}
             <div class="col-lg-3">
-                <div class="friend">
+                <div class="friend" id="{{ friend.twitter_id }}">
                     <img src="{{ friend.profile_image_url }}" alt="{{ friend.name }}" />
-                    <span><a href="https://twitter.com/intent/user?user_id={{ friend.id }}" target="_blank">@{{ friend.screen_name }}</a></span>
+                    <span><a href="https://twitter.com/intent/user?user_id={{ friend.twitter_id }}" target="_blank">@{{ friend.screen_name }}</a></span>
                     <div class="actions">
-                        <span class="action un-follow">Unfollow</span>
+                        <a href="https://twitter.com/{{ friend.screen_name }}" class="twitter-follow-button" data-show-count="false">Follow {{ friend.screen_name }}</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="{% static 'js/endpoints.js' %}"></script>
 {% endblock %}

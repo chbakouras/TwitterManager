@@ -1,16 +1,12 @@
 from __future__ import absolute_import, print_function
-from django.shortcuts import render
+
 from django.contrib.auth.decorators import login_required
-from manager.utils import get_api
-import tweepy
+from django.shortcuts import render
+
+from manager.models import Friend
 
 
 @login_required(login_url="login/")
 def following(request):
-    api = get_api(request)
-
-    friends = []
-    for friend in tweepy.Cursor(api.friends).items():
-        friends.append(friend)
-
+    friends = Friend.objects.all()
     return render(request, "page/following.html", {'friends': friends})
