@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from manager.config import *
+from apps.twitter_auth.settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.twitter_auth',
     'manager',
     'social.apps.django_app.default',
 ]
@@ -57,7 +58,10 @@ ROOT_URLCONF = 'TwiiterManager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [
+            os.path.join(BASE_DIR, 'apps', 'twitter_auth', 'templates'),
+            os.path.join(BASE_DIR, 'templates'),
+        ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

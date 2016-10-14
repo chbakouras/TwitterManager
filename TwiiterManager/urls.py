@@ -16,12 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from django.contrib.auth import views
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'', include('apps.twitter_auth.urls')),
     url(r'', include('manager.urls')),
-    url('', include('social.apps.django_app.urls', namespace='social')),
-    url(r'^login/$', views.login, {'template_name': 'auth/login.html'}, name='login'),
-    url(r'^logout/$', views.logout, {'next_page': '/login'}, name='logout'),
 ]
