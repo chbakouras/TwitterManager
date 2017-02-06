@@ -6,13 +6,13 @@ import tweepy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import JsonResponse
+from manager.models import Friend
 from tweepy import TweepError
 
-from manager.models import Friend
-from manager.utils import get_api
+from apps.manager.utils import get_api
 
 
-@login_required(login_url="login/")
+@login_required(login_url="/login/")
 def un_follow(request, friend_id):
     api = get_api(request)
     try:
@@ -23,7 +23,7 @@ def un_follow(request, friend_id):
         return JsonResponse(reason, safe=False)
 
 
-@login_required(login_url="login/")
+@login_required(login_url="/login/")
 def follow(request, friend_id):
     api = get_api(request)
     try:
@@ -34,7 +34,7 @@ def follow(request, friend_id):
         return JsonResponse(reason, safe=False)
 
 
-@login_required(login_url="login/")
+@login_required(login_url="/login/")
 def synchronize(request):
     api = get_api(request)
 

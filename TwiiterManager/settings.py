@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.twitter_auth',
-    'manager',
+    'apps.manager',
     'social.apps.django_app.default',
 ]
 
