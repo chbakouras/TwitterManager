@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.twitter_auth',
     'apps.manager',
-    'apps.synchronize_commands',
+    'apps.job_scheduler',
     'social.apps.django_app.default',
 ]
 

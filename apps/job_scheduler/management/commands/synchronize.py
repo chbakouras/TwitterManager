@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
 from apps.manager.models import Friend
-from apps.synchronize_commands.utils import get_api
+from apps.job_scheduler.utils import get_api
 
 
 class Command(BaseCommand):

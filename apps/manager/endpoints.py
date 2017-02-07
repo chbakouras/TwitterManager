@@ -2,12 +2,10 @@ from __future__ import absolute_import, print_function
 
 import ast
 
-import tweepy
 from django.contrib.auth.decorators import login_required
 from django.core.management import call_command
 from django.http import HttpResponse
 from django.http import JsonResponse
-from apps.manager.models import Friend
 from tweepy import TweepError
 
 from apps.manager.utils import get_api
