@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from manager import endpoints
+from apps.manager import endpoints
 
 from apps.manager import views
 
