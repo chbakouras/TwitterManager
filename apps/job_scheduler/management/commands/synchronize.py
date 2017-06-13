@@ -1,13 +1,13 @@
 import tweepy
+
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
-from apps.manager.models import Friend
 from apps.job_scheduler.utils import get_api
+from apps.manager.models import Friend
 
 
-class Command(BaseCommand):
-
+class SynchronizeCommand(BaseCommand):
     help = 'Synchronize twitter friends'
 
     def add_arguments(self, parser):

@@ -4,6 +4,6 @@ from django.db import models
 
 class Job(models.Model):
     type = models.CharField(max_length=30)
+    running = models.BooleanField(default=False)
     finished = models.BooleanField(default=False)
-    extra_data = models.TextField(max_length=254)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
