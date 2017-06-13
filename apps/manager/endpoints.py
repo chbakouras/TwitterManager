@@ -3,8 +3,6 @@ from __future__ import absolute_import, print_function
 import ast
 
 from django.contrib.auth.decorators import login_required
-from django.core.management import call_command
-from django.http import HttpResponse
 from django.http import JsonResponse
 from tweepy import TweepError
 
@@ -31,10 +29,3 @@ def follow(request, friend_id):
     except TweepError as e:
         reason = ast.literal_eval(e.reason)
         return JsonResponse(reason, safe=False)
-
-
-@login_required(login_url="/login/")
-def synchronize(request):
-    call_command('synchronize', request.user.id, interactive=False)
-
-    return HttpResponse('')

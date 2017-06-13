@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('apps.twitter_auth.urls')),
     url(r'', include('apps.manager.urls')),
+    url(r'', include('apps.job_scheduler.urls')),
 ]
