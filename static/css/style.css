@@ -55,17 +55,6 @@ html, body {
     margin-top: 20%;
 }
 
-.friend {
-    background: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
-
-    -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.55);
-    -moz-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.55);
-    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.55);
-}
-
 .actions {
     text-align: right;
 }
@@ -75,6 +64,12 @@ html, body {
     margin: 4px;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.fab {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
 }
 
 /*.un-follow {*/

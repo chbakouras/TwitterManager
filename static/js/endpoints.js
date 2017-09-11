@@ -1,3 +1,7 @@
+jQuery(document).ready(function () {
+    startJobPolling();
+});
+
 function unFollow(id) {
     $.post("/un-follow/" + id + "/")
         .done(function (data) {
@@ -19,6 +23,26 @@ function follow(id) {
         .fail(function (data) {
             $('<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Failed! ' + data.responseText + '</strong></div>').appendTo("body");
         });
+}
+
+function synchronize() {
+    $.post("/synchronize/")
+        .done(function (data) {
+            startJobPolling()
+        })
+        .fail(function (data) {
+            $('<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Failed! ' + data.responseText + '</strong></div>').appendTo("body");
+        });
+}
+
+function startJobPolling() {
+    $.get("/jobs/")
+        .done(function (data) {
+            console.log(data)
+            if (data.length > 0) {
+                setInterval(startJobPolling, 5000);
+            }
+        })
 }
 
 function getCookie(name) {
