@@ -11,9 +11,11 @@
                     <img src="{{ friend.profile_image_url }}" alt="{{ friend.name }}" />
                     <span><a href="https://twitter.com/intent/user?user_id={{ friend.twitter_id }}" target="_blank">@{{ friend.screen_name }}</a></span>
                     <div class="actions">
-                        <button data-toggle="modal" data-target="#edit-question-175" type="button"
-                                class="btn btn-circle btn-raised ripple-effect  btn-info btn-sm">
-                            <span class="glyphicon glyphicon-edit"></span>
+                        <button onclick="unFollow({{ friend.twitter_id }})" type="button" class="un-follow btn btn-sm btn-circle btn-raised ripple-effect btn-danger">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                        <button style="display: none;" onclick="follow({{ friend.twitter_id }})" type="button" class="follow btn btn-sm btn-circle btn-raised ripple-effect btn-info">
+                            <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>

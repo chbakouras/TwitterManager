@@ -77,30 +77,30 @@ html, body {
     cursor: pointer;
 }
 
-.un-follow {
-    background: #4a9bff;
-    color: #FFF;
+/*.un-follow {*/
+    /*background: #4a9bff;*/
+    /*color: #FFF;*/
 
-    -webkit-box-shadow: 0 0 2px 1px rgba(42, 176, 255, 0.55);
-    -moz-box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);
-    box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);
-}
+    /*-webkit-box-shadow: 0 0 2px 1px rgba(42, 176, 255, 0.55);*/
+    /*-moz-box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);*/
+    /*box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);*/
+/*}*/
 
-.un-follow:hover {
-    background: #8db4ff;
-    color: #FFF;
-}
+/*.un-follow:hover {*/
+    /*background: #8db4ff;*/
+    /*color: #FFF;*/
+/*}*/
 
-.follow {
-    background: #5e9a4a;
-    color: #FFF;
+/*.follow {*/
+    /*background: #5e9a4a;*/
+    /*color: #FFF;*/
 
-    -webkit-box-shadow: 0 0 2px 1px rgba(42, 176, 255, 0.55);
-    -moz-box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);
-    box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);
-}
+    /*-webkit-box-shadow: 0 0 2px 1px rgba(42, 176, 255, 0.55);*/
+    /*-moz-box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);*/
+    /*box-shadow: 0 0 2px 1px rgba(42, 176, 255,0.55);*/
+/*}*/
 
-.follow:hover {
-    background: #65b45a;
-    color: #FFF;
-}
+/*.follow:hover {*/
+    /*background: #65b45a;*/
+    /*color: #FFF;*/
+/*}*/
