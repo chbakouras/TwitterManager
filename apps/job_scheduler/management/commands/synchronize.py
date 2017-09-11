@@ -7,7 +7,7 @@ from apps.job_scheduler.utils import get_api
 from apps.manager.models import Friend
 
 
-class SynchronizeCommand(BaseCommand):
+class Command(BaseCommand):
     help = 'Synchronize twitter friends'
 
     def add_arguments(self, parser):

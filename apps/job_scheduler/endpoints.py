@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse, HttpResponseNotAllowed
+from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponse
 
 from apps.job_scheduler.models import Job
 
@@ -44,12 +44,15 @@ def get_job(request, job_id):
     if request.method == 'GET':
         job = Job.objects.get(id=job_id)
 
-        return JsonResponse({
-            "id": job.id,
-            "type": job.type,
-            "running": job.running,
-            "finished": job.finished,
-            "userId": job.user_id,
-        })
+        if request.user.id == job.user_id:
+            return JsonResponse({
+                "id": job.id,
+                "type": job.type,
+                "running": job.running,
+                "finished": job.finished,
+                "userId": job.user_id,
+            })
+        else:
+            return HttpResponse('Unauthorized', status=401)
     else:
         return HttpResponseNotAllowed(['GET'])
