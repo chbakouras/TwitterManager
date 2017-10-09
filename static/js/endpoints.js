@@ -5,6 +5,7 @@ jQuery(document).ready(function () {
 function unFollow(id) {
     $.post("/un-follow/" + id + "/")
         .done(function (data) {
+            $("#" + id).hide();
             $("#" + id + " > .actions > .un-follow").hide();
             $("#" + id + " > .actions > .follow").show();
         })
