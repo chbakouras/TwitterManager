@@ -8,10 +8,10 @@ from apps.manager.models import Friend
 
 @login_required(login_url="/login/")
 def home(request):
-    return redirect('following')
+    return redirect('my_friends')
 
 
 @login_required(login_url="/login/")
-def following(request):
+def my_friends(request):
     friends = Friend.objects.all()
-    return render(request, "page/following.html", {'friends': friends})
+    return render(request, "page/friends.html", {'friends': friends})

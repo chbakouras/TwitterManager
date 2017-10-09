@@ -6,7 +6,17 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <button onclick="synchronize()" class="btn btn-info ripple-effect">
+                <input type="text" id="search" autocomplete="off" name="search" class="search-box auto-update" placeholder="Search..." onkeyup="up();" onkeydown="down();">
+            </div>
+            <div class="col-md-4">
+                <select id="friendship" name="search-status" class="form-control material-field auto-update">
+                    <option value="all">All Friends</option>
+                    <option value="0">Not Following Back</option>
+                    <option value="1">Following Back</option>
+                </select>
+            </div>
+            <div class="col-md-offset-6 col-md-2">
+                <button onclick="synchronize()" class="btn btn-info ripple-effect pull-right">
                     <span>
                     Synchronize
                     </span>
