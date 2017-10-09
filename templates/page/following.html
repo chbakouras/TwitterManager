@@ -6,28 +6,34 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <button onclick="synchronize()" class="btn btn-info ripple-effect" >
+                <button onclick="synchronize()" class="btn btn-info ripple-effect">
+                    <span>
                     Synchronize
-                    <i class="fa fa-refresh fa-rotate-180" aria-hidden="true"></i>
+                    </span>
+                    <span id="synchronize-cog">
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </span>
                 </button>
             </div>
         </div>
         <div class="row">
             {% for friend in friends %}
-            <div class="col-lg-3">
-                <div class="card" id="{{ friend.twitter_id }}">
-                    <img src="{{ friend.profile_image_url }}" alt="{{ friend.name }}" />
-                    <span><a href="https://twitter.com/intent/user?user_id={{ friend.twitter_id }}" target="_blank">@{{ friend.screen_name }}</a></span>
-                    <div class="actions">
-                        <button onclick="unFollow({{ friend.twitter_id }})" type="button" class="un-follow btn btn-sm btn-circle btn-raised ripple-effect btn-danger">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </button>
-                        <button style="display: none;" onclick="follow({{ friend.twitter_id }})" type="button" class="follow btn btn-sm btn-circle btn-raised ripple-effect btn-info">
-                            <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
-                        </button>
+                <div class="col-lg-3">
+                    <div class="card" id="{{ friend.twitter_id }}">
+                        <img src="{{ friend.profile_image_url }}" alt="{{ friend.name }}"/>
+                        <span><a href="https://twitter.com/intent/user?user_id={{ friend.twitter_id }}" target="_blank">@{{ friend.screen_name }}</a></span>
+                        <div class="actions">
+                            <button onclick="unFollow({{ friend.twitter_id }})" type="button"
+                                    class="un-follow btn btn-sm btn-circle btn-raised ripple-effect btn-danger">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                            <button style="display: none;" onclick="follow({{ friend.twitter_id }})" type="button"
+                                    class="follow btn btn-sm btn-circle btn-raised ripple-effect btn-info">
+                                <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>

@@ -38,9 +38,11 @@ function synchronize() {
 function startJobPolling() {
     $.get("/jobs/")
         .done(function (data) {
-            console.log(data)
             if (data.length > 0) {
-                setInterval(startJobPolling, 5000);
+                $('#synchronize-cog').html('<i class="fa fa-refresh fa-spin" aria-hidden="true"></i>')
+                setTimeout(startJobPolling, 3000)
+            } else {
+                $('#synchronize-cog').html('<i class="fa fa-refresh" aria-hidden="true"></i>')
             }
         })
 }
