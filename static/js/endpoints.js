@@ -48,6 +48,44 @@ function startJobPolling() {
         })
 }
 
+var liveSearch = function () {
+    var search = $('#search').val();
+    var friendship = $('#friendship').val();
+
+    $.ajax({
+        type: "POST",
+        url: "/live-search/",
+        data: {
+            'search': search,
+            'friendship': friendship
+        },
+        success: function (response) {
+            document.getElementById("friends").innerHTML = response;
+        }
+    })
+}
+
+var timer;
+
+function up() {
+    timer = setTimeout(liveSearch, 500);
+}
+
+function down() {
+    clearTimeout(timer);
+}
+
+$(document).ready(function () {
+    $(".auto-update").change(liveSearch);
+});
+
+
+
+
+
+
+
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
