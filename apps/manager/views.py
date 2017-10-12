@@ -23,6 +23,11 @@ def live_search_my_friends(request):
     if request.method == "POST":
         search = request.POST['search']
         friends = Friend.objects.filter(screen_name__icontains=search)
+
+        friendship = request.POST['friendship']
+        if friendship != 'all':
+            friends = friends.filter(following_back=friendship)
+
         return render(request, "friends/list.html", {'friends': friends})
     else:
         return HttpResponseNotAllowed(['POST'])
