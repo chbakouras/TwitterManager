@@ -1,6 +1,6 @@
 {% for friend in friends %}
     <div class="col-lg-3">
-        <div class="card" id="{{ friend.twitter_id }}">
+        <div class="card friend" id="{{ friend.twitter_id }}" data-id="{{ friend.twitter_id }}">
             <img src="{{ friend.profile_image_url }}" alt="{{ friend.name }}"/>
             <span><a href="https://twitter.com/intent/user?user_id={{ friend.twitter_id }}" target="_blank">@{{ friend.screen_name }}</a></span>
             <div class="actions">

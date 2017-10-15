@@ -65,6 +65,15 @@ var liveSearch = function () {
     })
 }
 
+function massUnfollow() {
+    $('.friend').each(function (index, friend) {
+        var id = $(friend).data('id')
+        if (id !== null) {
+            unFollow(id)
+        }
+    })
+}
+
 var timer;
 
 function up() {
@@ -78,12 +87,6 @@ function down() {
 $(document).ready(function () {
     $(".auto-update").change(liveSearch);
 });
-
-
-
-
-
-
 
 
 function getCookie(name) {
@@ -107,7 +110,7 @@ function csrfSafeMethod(method) {
 }
 
 $.ajaxSetup({
-    beforeSend: function(xhr, settings) {
+    beforeSend: function (xhr, settings) {
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
         }
