@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import tweepy
 
 from django.contrib.auth.models import User
@@ -30,7 +32,15 @@ class Command(BaseCommand):
                 friend = Friend(
                     twitter_id=twitterFriend.id,
                     profile_image_url=twitterFriend.profile_image_url,
+                    profile_background_image_url=twitterFriend.profile_background_image_url,
                     screen_name=twitterFriend.screen_name,
+                    favourites_count=twitterFriend.favourites_count,
+                    followers_count=twitterFriend.followers_count,
+                    friends_count=twitterFriend.friends_count,
+                    statuses_count=twitterFriend.statuses_count,
+                    description=twitterFriend.description,
+                    location=twitterFriend.location,
+                    name=twitterFriend.name,
                     user=user
                 )
 

@@ -49,6 +49,7 @@ function startJobPolling() {
     $.get("/jobs/")
         .done(function (data) {
             if (data.length > 0) {
+                liveSearch();
                 $('#synchronize-cog').html('<i class="fa fa-refresh fa-spin" aria-hidden="true"></i>')
                 setTimeout(startJobPolling, 3000)
             } else {
