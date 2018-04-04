@@ -1,5 +1,14 @@
-jQuery(document).ready(function () {
+var view = 'list';
+var gridButton;
+var listButton;
+
+$(document).ready(function () {
     startJobPolling();
+
+    $(".auto-update").change(liveSearch);
+
+    gridButton = $('#grid-button');
+    listButton = $('#list-button');
 });
 
 function unFollow(id) {
@@ -57,7 +66,8 @@ var liveSearch = function () {
         url: "/live-search/",
         data: {
             'search': search,
-            'friendship': friendship
+            'friendship': friendship,
+            'view': view
         },
         success: function (response) {
             document.getElementById("friends").innerHTML = response;
@@ -84,11 +94,6 @@ function down() {
     clearTimeout(timer);
 }
 
-$(document).ready(function () {
-    $(".auto-update").change(liveSearch);
-});
-
-
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -102,6 +107,20 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function listLayout() {
+    gridButton.removeClass("active");
+    listButton.addClass("active");
+    view = 'list';
+    liveSearch();
+}
+
+function gridLayout() {
+    listButton.removeClass("active");
+    gridButton.addClass("active");
+    view = 'grid';
+    liveSearch();
 }
 
 function csrfSafeMethod(method) {

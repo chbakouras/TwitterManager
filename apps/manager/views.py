@@ -28,6 +28,8 @@ def live_search_my_friends(request):
         if friendship != 'all':
             friends = friends.filter(following_back=friendship)
 
-        return render(request, "friends/list.html", {'friends': friends})
+        view = request.POST['view']
+
+        return render(request, "friends/" + view + ".html", {'friends': friends})
     else:
         return HttpResponseNotAllowed(['POST'])

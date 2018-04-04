@@ -125,3 +125,15 @@ html, body {
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-color: #555555 transparent transparent transparent;
 }
+
+.btn-grid-list {
+    margin: 0 5px;
+    color: #555;
+}
+
+.btn-grid-list.active {
+    background: white;
+    -webkit-box-shadow: 0 1px 8px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 1px 8px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 1px 8px -2px rgba(0, 0, 0, 0.75);
+}
