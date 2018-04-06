@@ -49,7 +49,11 @@ function startJobPolling() {
     $.get("/jobs/")
         .done(function (data) {
             if (data.length > 0) {
-                liveSearch();
+                liveSearch()
+                    .success(function (res) {
+                        $('#list-table').DataTable({searching: false});
+                    });
+
                 $('#synchronize-cog').html('<i class="fa fa-refresh fa-spin" aria-hidden="true"></i>')
                 setTimeout(startJobPolling, 3000)
             } else {
@@ -62,7 +66,7 @@ var liveSearch = function () {
     var search = $('#search').val();
     var friendship = $('#friendship').val();
 
-    $.ajax({
+    return $.ajax({
         type: "POST",
         url: "/live-search/",
         data: {
@@ -114,7 +118,10 @@ function listLayout() {
     gridButton.removeClass("active");
     listButton.addClass("active");
     view = 'list';
-    liveSearch();
+    liveSearch()
+        .success(function (res) {
+            $('#list-table').DataTable({searching: false});
+        });
 }
 
 function gridLayout() {

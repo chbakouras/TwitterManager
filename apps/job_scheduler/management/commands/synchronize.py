@@ -1,7 +1,4 @@
-from pprint import pprint
-
 import tweepy
-
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
@@ -29,6 +26,19 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('Start synchronization...'))
 
             for twitterFriend in tweepy.Cursor(api.friends).items():
+                if twitterFriend.profile_background_image_url is None:
+                    twitterFriend.profile_background_image_url = ''
+                if twitterFriend.description is None:
+                    twitterFriend.description = ''
+                if twitterFriend.location is None:
+                    twitterFriend.location = ''
+                if twitterFriend.profile_image_url is None:
+                    twitterFriend.profile_image_url = ''
+                if twitterFriend.screen_name is None:
+                    twitterFriend.screen_name = ''
+                if twitterFriend.name is None:
+                    twitterFriend.name = ''
+
                 friend = Friend(
                     twitter_id=twitterFriend.id,
                     profile_image_url=twitterFriend.profile_image_url,

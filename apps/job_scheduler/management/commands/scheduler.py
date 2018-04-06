@@ -11,10 +11,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         jobs = Job.objects \
             .filter(finished=False) \
+            .filter(running=False) \
             .filter(type__exact=settings.SYNCHRONIZE)
 
         for job in jobs:
+            job.running = True
+            job.save()
+
             call_command('synchronize', job.user_id, interactive=False)
 
+            job.running = False
             job.finished = True
             job.save()

@@ -2,6 +2,10 @@
 
 {% load staticfiles %}
 
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -63,5 +67,6 @@
 
 {% block scripts %}
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <script src="{% static 'js/endpoints.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <script src="{% static 'js/friends.js' %}"></script>
 {% endblock %}
