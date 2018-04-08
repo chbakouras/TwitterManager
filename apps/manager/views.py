@@ -18,6 +18,11 @@ def my_friends(request):
     return render(request, "friends/index.html", {'friends': friends})
 
 
+def tweet(request):
+    friends = Friend.objects.all()
+    return render(request, "friends/index.html", {'friends': friends})
+
+
 @login_required(login_url="/login/")
 def live_search_my_friends(request):
     if request.method == "POST":
