@@ -6,7 +6,7 @@ from apps.manager import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^my-friends/', views.my_friends, name='my_friends'),
-    url(r'^tweets/', views.get_tweets, name='tweets'),
+    url(r'^my-tweets/', views.my_tweets, name='my_tweets'),
     url(r'^tweets/create/', views.create_tweet, name='create_tweet'),
     url(r'^live-search/', views.live_search_my_friends, name='my_friends_live_search'),
     url(r'^un-follow/(?P<friend_id>[-\w]+)/', endpoints.un_follow),
