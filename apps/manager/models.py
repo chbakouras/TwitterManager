@@ -16,3 +16,13 @@ class Friend(models.Model):
     location = models.CharField(max_length=200, default='')
     name = models.CharField(max_length=200, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Tweet(models.Model):
+    tweet_id = models.CharField(max_length=200)
+    created_at = models.DateField()
+    text = models.CharField(max_length=200, default='')
+    retweet_count = models.BigIntegerField(default=0)
+    retweeted = models.BooleanField(default=True)
+    in_reply_to_screen_name = models.CharField(max_length=200, default='')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

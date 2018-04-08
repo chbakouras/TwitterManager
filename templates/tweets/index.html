@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" id="create-tweet">
+            <div class="col-xs-12">
+                <form action="{% url 'create_tweet' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="status" autocomplete="off" name="status"
+                           placeholder="What's happening?">
+                    <input type="submit" id="create-tweet-btn" value="Tweet">
+                </form>
+            </div>
+        </div>
+
+        <div class="row" id="tweets">
+            {% include "tweets/grid.html" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/tweets.js' %}"></script>
+{% endblock %}
