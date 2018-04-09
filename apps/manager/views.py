@@ -61,7 +61,8 @@ def my_tweets(request):
                 _create_tweet(tweet, user)
 
         tweets = Tweet.objects \
-            .filter(user_id=request.user.id)
+            .filter(user_id=request.user.id)\
+            .order_by('-created_at', '-tweet_id')
 
         return render(request, "tweets/index.html", {'tweets': tweets})
     except TweepError as error:

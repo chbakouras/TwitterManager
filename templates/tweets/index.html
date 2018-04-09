@@ -5,12 +5,16 @@
 {% block content %}
     <div class="container">
         <div class="row" id="create-tweet">
-            <div class="col-xs-12">
-                <form action="{% url 'create_tweet' %}" method="POST">
+              <div class="col-lg-offset-2 col-lg-8">
+                <form action="{% url 'create_tweet' %}" method="POST" id="tweet-form">
                     {% csrf_token %}
-                    <input type="text" id="status" autocomplete="off" name="status"
-                           placeholder="What's happening?">
-                    <input type="submit" id="create-tweet-btn" value="Tweet">
+                    <textarea rows="4" id="status" autocomplete="off" name="status"
+                              class="form-control material-field"
+                              placeholder="What's happening?"></textarea>
+                    <button type="submit" id="create-tweet-btn">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                        <span>Tweet</span>
+                    </button>
                 </form>
             </div>
         </div>

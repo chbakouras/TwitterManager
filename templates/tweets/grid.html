@@ -1,0 +1,24 @@
+{% for tweet in tweets %}
+    <div class="col-lg-offset-2 col-lg-8">
+        <div class="card padding-bottom-40" id="{{ tweet.tweet_id }}" data-id="{{ tweet.tweet_id }}">
+            <div class="tweet-text">
+                <span>
+                    {{ tweet.text }}
+                </span>
+            </div>
+
+            <div class="tweet-meta">
+                <span>{{ tweet.created_at }}</span>
+                <span>
+                    <i class="fa fa-retweet" aria-hidden="true"></i>
+                    {{ tweet.retweet_count }}
+                </span>
+            </div>
+            <div class="tweet-link">
+                <a href="https://twitter.com/statuses/{{ tweet.tweet_id }}" target="_blank">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
