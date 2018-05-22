@@ -87,6 +87,24 @@ def create_tweet(request):
         return HttpResponseNotAllowed(['POST'])
 
 
+def twitter_search(request):
+    if request.method == "GET":
+        return render(request, "twitter-search/index.html", {})
+    elif request.method == "POST":
+        try:
+            user = request.user
+            api = get_api(user)
+
+            search = request.POST['search']
+            tweets = api.search(search)
+
+            return render(request, "twitter-search/grid.html", {'tweets': tweets})
+        except TweepError as error:
+            return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
+    else:
+        return HttpResponseNotAllowed(['POST', 'GET'])
+
+
 def _create_tweet(status, user):
     if status.text is None:
         status.text = ''
