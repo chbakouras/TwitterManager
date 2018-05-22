@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <form method="post" action="/twitter-search/">
+                    {% csrf_token %}
+                    <input type="text" id="search" autocomplete="off" name="search" class="search-box"
+                           placeholder="Search...">
+
+                    <button class="btn btn-primary ripple-effect" id="search-button">
+                        <i class="fa fa-search"></i>
+                        <span>Search</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" id="tweets">
+            {% include "twitter-search/grid.html" %}
+        </div>
+
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8">
+                {% if max_id != 0 %}
+                    <a class="btn btn-default btn-primary btn-load-more" onclick="loadNextPageTweets()">
+                        <span>Load More</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

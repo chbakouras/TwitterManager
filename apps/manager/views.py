@@ -61,7 +61,7 @@ def my_tweets(request):
                 _create_tweet(tweet, user)
 
         tweets = Tweet.objects \
-            .filter(user_id=request.user.id)\
+            .filter(user_id=request.user.id) \
             .order_by('-created_at', '-tweet_id')
 
         return render(request, "tweets/index.html", {'tweets': tweets})
@@ -89,20 +89,48 @@ def create_tweet(request):
 
 def twitter_search(request):
     if request.method == "GET":
-        return render(request, "twitter-search/index.html", {})
+        return render(request, "twitter-search/index.html", {'max_id': 0, 'search': ''})
     elif request.method == "POST":
         try:
             user = request.user
             api = get_api(user)
 
-            search = request.POST['search']
-            tweets = api.search(search)
+            max_id = request.POST.get('max_id', 0)
+            search = request.POST.get('search', '')
 
-            return render(request, "twitter-search/grid.html", {'tweets': tweets})
+            tweets = api.search(q=search, count=20, max_id=max_id)
+
+            return render(request, "twitter-search/index.html", {
+                'tweets': tweets,
+                'max_id': tweets.max_id,
+                'search': search
+            })
         except TweepError as error:
             return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
     else:
         return HttpResponseNotAllowed(['POST', 'GET'])
+
+
+def twitter_search_live_load(request):
+    if request.method == "POST":
+        try:
+            user = request.user
+            api = get_api(user)
+
+            max_id = request.POST.get('max_id', 0)
+            search = request.POST.get('search', '')
+
+            tweets = api.search(q=search, count=20, max_id=max_id)
+
+            return render(request, "twitter-search/grid.html", {
+                'tweets': tweets,
+                'max_id': tweets.max_id,
+                'search': search
+            })
+        except TweepError as error:
+            return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
+    else:
+        return HttpResponseNotAllowed(['POST'])
 
 
 def _create_tweet(status, user):

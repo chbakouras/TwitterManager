@@ -208,3 +208,23 @@ html, body {
 .tweet-text {
     padding-bottom: 20px;
 }
+
+#search-button {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 15px;
+    height: 45px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color: transparent;
+}
+
+.btn-load-more {
+    margin-bottom: 200px;
+    margin-top: 30px;
+    width: 300px;
+    float: right;
+    border-radius: 0;
+}
