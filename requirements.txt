@@ -17,13 +17,11 @@ oauthlib==2.0.0
 pexpect==4.2.1
 Pillow==3.4.1
 ptyprocess==0.5.1
-pycups==1.9.73
 PyJWT==1.4.2
 python-dateutil==2.6.0
 python-openid==2.2.5
 python3-openid==3.0.10
 pyxdg==0.25
-reportlab==3.3.0
 requests==2.11.1
 requests-oauthlib==0.7.0
 six==1.10.0
