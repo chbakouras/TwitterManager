@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'TwiiterManager.urls'
+ROOT_URLCONF = 'TwitterManager.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'TwiiterManager.wsgi.application'
+WSGI_APPLICATION = 'TwitterManager.wsgi.application'
 
 AUTHENTICATION_BACKENDS = (
    'social.backends.twitter.TwitterOAuth',
