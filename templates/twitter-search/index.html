@@ -8,22 +8,25 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <form method="post" action="/twitter-search/">
-                    {% csrf_token %}
-                    <input type="text" id="search" autocomplete="off" name="search" class="search-box"
-                           placeholder="Search...">
+    <div id="fixed-top-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form method="post" action="/twitter-search/">
+                        {% csrf_token %}
+                        <input type="text" id="search" autocomplete="off" name="search" class="search-box"
+                               placeholder="Search..." value="{{ search }}">
 
-                    <button class="btn btn-primary ripple-effect" id="search-button">
-                        <i class="fa fa-search"></i>
-                        <span>Search</span>
-                    </button>
-                </form>
+                        <button class="btn btn-primary ripple-effect" id="search-button">
+                            <i class="fa fa-search"></i>
+                            <span>Search</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-
+    </div>
+    <div class="container">
         <div class="row" id="tweets">
             {% include "twitter-search/grid.html" %}
         </div>

@@ -228,3 +228,15 @@ html, body {
     float: right;
     border-radius: 0;
 }
+
+#tweets {
+    margin-top: 60px;
+}
+
+#fixed-top-search {
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 999;
+    top: 50px;
+}
