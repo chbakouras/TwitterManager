@@ -86,3 +86,19 @@ def delete_tweet(request, tweet_id):
             return JsonResponse({'error': error.args[0][0]['message']}, safe=False, status=400)
     else:
         return HttpResponseNotAllowed(['DELETE'])
+
+
+@login_required(login_url="/login/")
+def retweet(request, tweet_id):
+    if request.method == "POST":
+        try:
+            user = request.user
+            api = get_api(user)
+
+            api.retweet(id=tweet_id)
+
+            return JsonResponse({}, safe=False)
+        except TweepError as error:
+            return JsonResponse({'error': error.args[0][0]['message']}, safe=False, status=400)
+    else:
+        return HttpResponseNotAllowed(['POST'])

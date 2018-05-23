@@ -19,6 +19,12 @@
                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
+            <div class="retweet">
+                <a onclick="retweet('{{ tweet.id_str }}')">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <span>Retweet</span>
+                </a>
+            </div>
         </div>
     </div>
 {% endfor %}
