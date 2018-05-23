@@ -46,12 +46,17 @@ def follow(request, friend_id):
             user=request.user
         )
 
-        friendships = api.show_friendship(source_id=twitter_friend_json['id'], target_id=me.id)
+        friendships = api.show_friendship(
+            source_id=twitter_friend_json['id'],
+            target_id=me.id
+        )
+
         for friendship in friendships:
             if friendship.id == twitter_friend_json['id']:
                 friend.following_back = friendship.following
 
-        existing_friend = Friend.objects.filter(twitter_id=friend.twitter_id)
+        existing_friend = Friend.objects\
+            .filter(twitter_id=friend.twitter_id)
 
         if existing_friend:
             existing_friend.update(
@@ -81,9 +86,16 @@ def delete_tweet(request, tweet_id):
             api = get_api(user)
             api.destroy_status(twitter_tweet_id)
 
-            return JsonResponse({}, safe=False)
+            return JsonResponse(
+                {},
+                safe=False
+            )
         except TweepError as error:
-            return JsonResponse({'error': error.args[0][0]['message']}, safe=False, status=400)
+            return JsonResponse(
+                {'error': error.args[0][0]['message']},
+                safe=False,
+                status=400
+            )
     else:
         return HttpResponseNotAllowed(['DELETE'])
 
@@ -97,8 +109,15 @@ def retweet(request, tweet_id):
 
             api.retweet(id=tweet_id)
 
-            return JsonResponse({}, safe=False)
+            return JsonResponse(
+                {},
+                safe=False
+            )
         except TweepError as error:
-            return JsonResponse({'error': error.args[0][0]['message']}, safe=False, status=400)
+            return JsonResponse(
+                {'error': error.args[0][0]['message']},
+                safe=False,
+                status=400
+            )
     else:
         return HttpResponseNotAllowed(['POST'])

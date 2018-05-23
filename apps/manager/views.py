@@ -23,7 +23,11 @@ def my_friends(request):
     friends = Friend.objects \
         .filter(user_id=request.user.id)
 
-    return render(request, "friends/index.html", {'friends': friends})
+    return render(
+        request,
+        "friends/index.html",
+        {'friends': friends}
+    )
 
 
 @login_required(login_url="/login/")
@@ -36,11 +40,16 @@ def live_search_my_friends(request):
 
         friendship = request.POST['friendship']
         if friendship != 'all':
-            friends = friends.filter(following_back=friendship)
+            friends = friends \
+                .filter(following_back=friendship)
 
         view = request.POST['view']
 
-        return render(request, "friends/" + view + ".html", {'friends': friends})
+        return render(
+            request,
+            "friends/" + view + ".html",
+            {'friends': friends}
+        )
     else:
         return HttpResponseNotAllowed(['POST'])
 
@@ -53,7 +62,8 @@ def my_tweets(request):
         timeline = api.user_timeline()
 
         for tweet in timeline:
-            found_tweet = Tweet.objects.filter(tweet_id=tweet.id_str)
+            found_tweet = Tweet.objects \
+                .filter(tweet_id=tweet.id_str)
 
             if found_tweet:
                 _update_tweet(found_tweet, tweet)
@@ -64,9 +74,17 @@ def my_tweets(request):
             .filter(user_id=request.user.id) \
             .order_by('-created_at', '-tweet_id')
 
-        return render(request, "tweets/index.html", {'tweets': tweets})
+        return render(
+            request,
+            "tweets/index.html",
+            {'tweets': tweets}
+        )
     except TweepError as error:
-        return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
+        return render(
+            request,
+            "errors/error.html",
+            {'error': error.args[0][0]['message']}
+        )
 
 
 @login_required(login_url="/login/")
@@ -82,7 +100,11 @@ def create_tweet(request):
 
             return redirect('my_tweets')
         except TweepError as error:
-            return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
+            return render(
+                request,
+                "errors/error.html",
+                {'error': error.args[0][0]['message']}
+            )
     else:
         return HttpResponseNotAllowed(['POST'])
 
@@ -90,7 +112,11 @@ def create_tweet(request):
 @login_required(login_url="/login/")
 def twitter_search(request):
     if request.method == "GET":
-        return render(request, "twitter-search/index.html", {'max_id': 0, 'search': ''})
+        return render(
+            request,
+            "twitter-search/index.html",
+            {'max_id': 0, 'search': ''}
+        )
     elif request.method == "POST":
         try:
             user = request.user
@@ -99,15 +125,27 @@ def twitter_search(request):
             max_id = request.POST.get('max_id', 0)
             search = request.POST.get('search', '')
 
-            tweets = api.search(q=search, count=20, max_id=max_id)
+            tweets = api.search(
+                q=search,
+                count=20,
+                max_id=max_id
+            )
 
-            return render(request, "twitter-search/index.html", {
-                'tweets': tweets,
-                'max_id': tweets.max_id,
-                'search': search
-            })
+            return render(
+                request,
+                "twitter-search/index.html",
+                {
+                    'tweets': tweets,
+                    'max_id': tweets.max_id,
+                    'search': search
+                }
+            )
         except TweepError as error:
-            return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
+            return render(
+                request,
+                "errors/error.html",
+                {'error': error.args[0][0]['message']}
+            )
     else:
         return HttpResponseNotAllowed(['POST', 'GET'])
 
@@ -122,15 +160,27 @@ def twitter_search_live_load(request):
             max_id = request.POST.get('max_id', 0)
             search = request.POST.get('search', '')
 
-            tweets = api.search(q=search, count=20, max_id=max_id)
+            tweets = api.search(
+                q=search,
+                count=20,
+                max_id=max_id
+            )
 
-            return render(request, "twitter-search/grid.html", {
-                'tweets': tweets,
-                'max_id': tweets.max_id,
-                'search': search
-            })
+            return render(
+                request,
+                "twitter-search/grid.html",
+                {
+                    'tweets': tweets,
+                    'max_id': tweets.max_id,
+                    'search': search
+                }
+            )
         except TweepError as error:
-            return render(request, "errors/error.html", {'error': error.args[0][0]['message']})
+            return render(
+                request,
+                "errors/error.html",
+                {'error': error.args[0][0]['message']}
+            )
     else:
         return HttpResponseNotAllowed(['POST'])
 
