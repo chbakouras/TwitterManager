@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^twitter-search-live-load/', views.twitter_search_live_load, name='twitter_search_live_load'),
     url(r'^tweets/create/', views.create_tweet, name='create_tweet'),
     url(r'^live-search/', views.live_search_my_friends, name='my_friends_live_search'),
+
+    url(r'^tweets/delete/(?P<tweet_id>[-\w]+)/', endpoints.delete_tweet, name='delete_tweet'),
     url(r'^un-follow/(?P<friend_id>[-\w]+)/', endpoints.un_follow),
     url(r'^follow/(?P<friend_id>[-\w]+)/', endpoints.follow),
 ]

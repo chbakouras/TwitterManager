@@ -174,12 +174,31 @@ html, body {
 
 .tweet-link {
     float: right;
-
 }
 
 .tweet-link > a {
     border: 0;
     background: #1da1f2;
+    color: white;
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.tweet-remove {
+    float: right;
+}
+
+.tweet-remove > a {
+    border: 0;
+    background: #d9534f;
     color: white;
     border-radius: 100px;
     box-shadow: none;

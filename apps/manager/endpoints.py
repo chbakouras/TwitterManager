@@ -4,10 +4,10 @@ import ast
 
 import logging
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseNotAllowed
 from tweepy import TweepError
 
-from apps.manager.models import Friend
+from apps.manager.models import Friend, Tweet
 from apps.manager.utils import get_api
 
 
@@ -67,3 +67,22 @@ def follow(request, friend_id):
     except TweepError as e:
         reason = ast.literal_eval(e.reason)
         return JsonResponse(reason, safe=False)
+
+
+@login_required(login_url="/login/")
+def delete_tweet(request, tweet_id):
+    if request.method == "DELETE":
+        try:
+            tweet = Tweet.objects.get(id=int(tweet_id))
+            twitter_tweet_id = tweet.tweet_id
+            tweet.delete()
+
+            user = request.user
+            api = get_api(user)
+            api.destroy_status(twitter_tweet_id)
+
+            return JsonResponse({}, safe=False)
+        except TweepError as error:
+            return JsonResponse({'error': error.args[0][0]['message']}, safe=False, status=400)
+    else:
+        return HttpResponseNotAllowed(['DELETE'])

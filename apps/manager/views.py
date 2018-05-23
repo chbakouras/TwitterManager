@@ -87,6 +87,7 @@ def create_tweet(request):
         return HttpResponseNotAllowed(['POST'])
 
 
+@login_required(login_url="/login/")
 def twitter_search(request):
     if request.method == "GET":
         return render(request, "twitter-search/index.html", {'max_id': 0, 'search': ''})
@@ -111,6 +112,7 @@ def twitter_search(request):
         return HttpResponseNotAllowed(['POST', 'GET'])
 
 
+@login_required(login_url="/login/")
 def twitter_search_live_load(request):
     if request.method == "POST":
         try:
