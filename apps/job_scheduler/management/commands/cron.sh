@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pipenv shell
-
 MANAGE_PATH=$1
 COMMAND="python3.5 $MANAGE_PATH scheduler"
 
