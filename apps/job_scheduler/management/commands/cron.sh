@@ -1,7 +1,9 @@
 #!/bin/bash
 
-MANAGE_PATH=$1
+PATH=$1
+MANAGE_PATH=$PATH/manage.py
 COMMAND="pipenv run python3.5 $MANAGE_PATH scheduler"
+cd $PATH
 
 (sleep 5 && eval $COMMAND) &
 (sleep 10 && eval $COMMAND) &
